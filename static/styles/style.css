@@ -1,0 +1,124 @@
+.loginform {
+	background-color: #fff;
+	border-radius: 3px;
+	border: 1px solid #bdbdbd;
+	padding: 5px;
+	color: #333;
+	width: 300px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 15px;
+	border-bottom: none;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	font-family: 'Roboto', sans-serif;
+}
+.small {
+	font-size: 13px;
+}
+.loginform input[type="text"], .loginform input[type="password"], .buttons input[type="submit"] {
+	border: 1px solid #aaa;
+	background: white;
+	border-radius: 2px;
+	padding: 4px;
+	display: block;
+	width: 100%;
+	margin-bottom: 15px;
+	color: #333;
+}
+.buttons {
+	background-color: #eee;
+	border: 1px solid #bdbdbd;
+	border-top: 1px solid #ddd;
+	width: 300px;
+	margin: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	height: 32px;
+	font-family: 'Roboto', sans-serif;
+}
+.buttons input[type="submit"] {
+	float: right;
+	margin-top: 1px;
+	font-weight: bold;
+	width: auto;
+	padding: 7px;
+	margin: 0;
+	display: inline-block;
+}
+.buttons .forgot {
+	font-size: 13px;
+	position: relative;
+	top: 3px;
+	text-decoration: none;
+	color: #3399ff;
+}
+.dabbleamlogo {
+	width: 300px;
+	height: 85px;
+	margin: auto;
+	background: url("/images/dabbleam.png");
+	background-size: 300px 85px;
+}
+html {
+	background: #121212;
+	color: #FFF;
+}
+#preload {
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: #121212;
+	z-index: 999;
+	width: 100%;
+	height: 100%;	
+}
+#loginbox {
+	width: 50%;
+	margin: auto;
+	margin-top: 50px;
+	background: rgba(0,0,0,.7);
+	padding: 15px;
+	text-align: center;
+	min-height: 300px;
+}
+#loginbox h2 {
+	line-height: 128px;
+}
+#loginbox #loginButton {
+	margin-top: 50px;
+	background-image: url("https://images.contentful.com/idjq7aai9ylm/4fSjj56uD6CYwYyus4KmES/4f6385c91e6de56274d99496e6adebab/EVE_SSO_Login_Buttons_Large_Black.png?w=270&h=45");
+	width: 270px;
+	height: 45px;
+	margin-bottom: 50px;
+}
+#loginbox #loginButton:hover {
+	background-image: url("https://images.contentful.com/idjq7aai9ylm/4PTzeiAshqiM8osU2giO0Y/5cc4cb60bac52422da2e45db87b6819c/EVE_SSO_Login_Buttons_Large_White.png?w=270&h=45");
+	cursor: pointer;
+}
+#loginbox #evelogo {
+	margin: auto;
+	background-image: url("/static/images/evelogo.png");
+	width: 420px;
+	height: 91px;
+}
+.fleft {
+	float: left;
+}
+.fright {
+	float: right;
+}
+.textcenter {
+	text-align: center;
+	margin: auto;
+	display: inline-block;
+}
+.clear {
+	float: none;
+	clear: both;
+}
