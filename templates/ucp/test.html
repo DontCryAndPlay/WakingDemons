@@ -1,0 +1,17 @@
+		<section>
+			<main class="box">
+				<h1 class="textcenter">Test</h1>
+				<p class="textcenter">Current token: $token$</p>
+				<p class="textcenter">Character ID: $uid$</p><br>
+				<form method="POST" action="/test" class="textcenter" autocomplete="false">
+					<label>Method: <input type="text" name="method" size="5" required value="$req.method$"></label><br>
+					<label>ApiVersion: <input type="text" name="apiversion" size="20" required value="$req.api$"></label><br>
+					<label>Route:<br><input autocomplete="off" type="text" name="route" size="64" value="$req.route$" required></label><br>
+					<label>Data:<br>
+						<textarea name="data" rows="10" cols="50">$req.data$</textarea>
+					</label><br>
+					<button type="submit">Enviar</button>
+				</form><br>
+				<p class="textcenter">Response:<br><textarea rows="10" cols="50" readonly>$response$</textarea></p>
+			</main>
+		</section>

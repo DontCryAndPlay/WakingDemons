@@ -1,0 +1,43 @@
+		<section>
+			<main class="box">
+				<h1 class="textcenter">Eve-mail</h1>
+				<div id="mail-main">
+					<div id="top-bar"></div>
+					<div id="left-side">
+						<ul>
+							<li class="mouseOverEffect" id="AllMails" onclick="openSection('/mail/All')">All Mails</li>
+						</ul>
+						<ul>
+							<li class="mouseOverEffect" id="Inbox" onclick="openSection('/mail/Inbox')">Inbox</li>
+							<li class="mouseOverEffect" id="Sent" onclick="openSection('/mail/Sent')">Sent</li>
+							<li class="mouseOverEffect" id="Corp" onclick="openSection('/mail/Corp')">Corp</li>
+							<li class="mouseOverEffect" id="Alliance" onclick="openSection('/mail/Alliance')">Alliance</li>
+						</ul>
+						<ul>
+							<li>Labels</li>
+						</ul>
+						<ul>
+							<li>Mailing Lists</li>
+						</ul>
+					</div>
+					<div id="main-side">
+						<table>
+							<thead>
+								<tr>
+									<th>Status</th>
+									<th>Sender</th>
+									<th>Subject</th>
+									<th>Received</th>
+									<th>Labels</th>
+								</tr>
+							</thead>
+							<tbody class="table-scroll">
+								$mails$
+							</tbody>
+						</table>
+					</div>
+					<div id="message-body">
+					</div>
+				</div>
+			</main>
+		</section>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<script type="text/javascript" src="//static.wakingdemons.com/js/jquery.js"></script>
+		<script type="text/javascript" src="//static.wakingdemons.com/js/ucpPinger.js"></script>
+		<script type="text/javascript">
+		var page = "$page$";
+		</script>
+		<style type="text/css">
+			::-webkit-scrollbar {
+			  width: 7px;
+			  height: 7px;
+			}
+			::-webkit-scrollbar-button {
+			  width: 0px;
+			  height: 0px;
+			}
+			::-webkit-scrollbar-thumb {
+			  background-color: #555;
+			  border: 0px none #ffffff;
+			  border-radius: 0px;
+			  transition: background-color 1.5s linear;
+			}
+			::-webkit-scrollbar-thumb:hover {
+			  background-color: #777;
+			}
+			::-webkit-scrollbar-thumb:active {
+			  background-color: #888;
+			}
+			::-webkit-scrollbar-track {
+			  background: #333;
+			  border: 0px none #ffffff;
+			  border-radius: 0px;
+			}
+			::-webkit-scrollbar-track:hover {
+			  background: #333;
+			}
+			::-webkit-scrollbar-track:active {
+			  background: #333333;
+			}
+			::-webkit-scrollbar-corner {
+			  background: transparent;
+			}
+			html {
+				min-height: 100%;
+				height: 100%;
+				background: url("//static.wakingdemons.com/images/backgrounds/$background$") no-repeat center fixed;
+				background-size: cover;
+				color: #FFF;
+				overflow: hidden;
+			}
+			body {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+			aside {
+				float: left;
+				width: 250px;
+				height: 100%;
+				clear: both;
+				text-align: center;
+				padding-top: 5px;
+			}
+			a, a:visited, a:active {
+				text-decoration: none;
+				font-weight: bold;
+				color: #FFF;
+			}
+			.box {
+				background: rgba(0,0,0,0.7);
+			}
+			img.rounded {
+				border-radius: 100px;
+			}
+			.fleft {
+				float: left;
+			}
+			.fright {
+				float: right;
+			}
+			section {
+				float: right;
+				width: 80%;
+			}
+			section header {
+				margin-top: 10px;
+				width: 80%;
+				height:50px;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+			section nav {
+				width: 80%;
+				margin-top: 10px;
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+			section nav ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			section nav ul li {
+				float: left;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				margin-right: 20px;
+				margin-left: 20px;
+			}
+			section nav ul:after {
+				clear: both;
+				content: "";
+				display: table;
+			}
+			section main {
+				width: 80%;
+				margin-top: 10px;
+				padding: 5px;
+			}
+			section footer {
+				width: 64%;
+				padding: 5px;
+				position: absolute;
+				bottom: 0;
+				max-height: 150px;
+				overflow: auto;
+			}
+			.textcenter {
+				text-align: center;
+				margin: auto;
+			}
+			aside ul {
+				margin-top: 50px;
+				padding: 0;
+				list-style: none;
+			}
+			aside ul li {
+				position: relative;
+				height: 40px;
+				line-height: 40px;
+				background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0));
+				margin-bottom: 2px;
+			}
+			aside ul li:hover {
+				cursor: pointer;
+				background: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0));
+			}
+			aside ul li.mail:before {
+				    content: '';
+				    display: block;
+				    width: 60px;
+				    height: 60px;
+				    background: url(//static.wakingdemons.com/images/Icons/UI/WindowIcons/evemail.png);
+				    background-size: contain;
+				    position: absolute;
+				    top: -10px;
+			}
+			aside ul li.settings:before {
+				    content: '';
+				    display: block;
+				    width: 50px;
+				    height: 50px;
+				    background: url(//static.wakingdemons.com/images/Icons/UI/WindowIcons/Settings.png);
+				    background-size: contain;
+				    position: absolute;
+				    bottom: -5px;
+				    left: 5px;
+			}
+			#mail-main {
+				max-height: 550px;
+				height: 550px;
+			}
+			#mail-main #message-body {
+				display: inline-block;
+				float: left;
+				width: 78%;
+				height: 228px;
+				border: 1px solid white;
+				margin-top: 10px;
+			}
+			#mail-main #main-side {
+				float: left;
+				width: 78%;
+				border: 1px solid white;
+				height: 230px;
+			}
+			#mail-main #main-side table {
+				width: 100%;
+				overflow: auto;
+				height: 200px;
+			}
+			#mail-main #main-side table thead > tr {
+				width: 96%;
+    			margin: auto;
+			}
+			#mail-main #main-side table thead > tr, #mail-main #main-side table tbody, #mail-main #main-side table tbody tr {
+				display: block;
+
+			}
+			#mail-main #main-side table th, #mail-main #main-side table td {
+				width: 19%;
+				display: inline-block;
+			}
+			#mail-main #main-side table tbody {
+				height: 200px;
+				overflow: auto;
+			}
+			#mail-main #main-side table tbody {
+				text-align: center;
+			}
+			.mouseOverEffect {
+				transition: background-color .5s ease-out;
+			}
+			.mouseOverEffect:hover {
+				background: rgba(255,255,255,0.1);
+				transition: none;
+			}
+			#mail-main #left-side {
+				float: left;
+				border: 1px solid white;
+				width: 19%;
+				margin-right: 10px;
+				margin-left: 1%;
+				height: 470px;
+			}
+			#mail-main #top-bar {
+				display: block;
+				width: 98%;
+				height: 50px;
+				border: 1px solid white;
+				margin-bottom: 10px;
+				margin-top: 10px;
+				margin-left: 1%;
+			}
+			#mail-main #left-side ul {
+				padding: 0;
+				list-style: none;
+			}
+			#mail-main #left-side ul li {
+				padding-left: 40px;
+				vertical-align: middle;
+				position: relative;
+			}
+			#mail-main #left-side #AllMails:before {
+				    content: '';
+				    display: block;
+				    width: 16px;
+				    height: 16px;
+				    background: url("//static.wakingdemons.com/images/Icons/items/73_16_5.png");
+				    background-size: contain;
+				    position: absolute;
+				    top: 0px;
+				    left: 15px;
+			}
+			#mail-main #left-side #Inbox:before {
+				    content: '';
+				    display: block;
+				    width: 16px;
+				    height: 16px;
+				    background: url("//static.wakingdemons.com/images/Icons/items/73_16_6.png");
+				    background-size: contain;
+				    position: absolute;
+				    top: 0px;
+				    left: 15px;
+			}
+			#mail-main #left-side #Sent:before {
+				    content: '';
+				    display: block;
+				    width: 16px;
+				    height: 16px;
+				    background: url("//static.wakingdemons.com/images/Icons/items/73_16_7.png");
+				    background-size: contain;
+				    position: absolute;
+				    top: 0px;
+				    left: 15px;
+			}
+			#mail-main #left-side #Corp:before {
+				    content: '';
+				    display: block;
+				    width: 16px;
+				    height: 16px;
+				    background: url("//static.wakingdemons.com/images/Icons/items/73_16_32.png");
+				    background-size: contain;
+				    position: absolute;
+				    top: 0px;
+				    left: 15px;
+			}
+			#mail-main #left-side #Alliance:before {
+				    content: '';
+				    display: block;
+				    width: 16px;
+				    height: 16px;
+				    background: url("//static.wakingdemons.com/images/Icons/items/73_16_31.png");
+				    background-size: contain;
+				    position: absolute;
+				    top: 0px;
+				    left: 15px;
+			}
+
+			#mail-main #left-side ul li:hover {
+				cursor: pointer;
+			}
+			.blinkAnimation {
+				background: -webkit-linear-gradient(-45deg, rgba(0,0,0,0) 0%,rgba(230,230,230,0) 46%,rgba(255,255,255,0.4) 50%,rgba(230,230,230,0) 54%,rgba(0,0,0,0) 100%);
+				background-size: 300% 100%;
+				animation-name: test;
+				animation-duration: 1.7s;
+				animation-iteration-count: infinite;
+				animation-timing-function: ease;
+				animation-delay: 0s;
+			}
+			@keyframes test {
+				from{background-position-x:100%}
+				to{background-position-x:0%}
+			}
+		</style>
+		<script type="text/javascript">
+			function openSection(section) {
+				location.href=section;
+			}
+		</script>
+	</head>
+	<body>
+		<aside class="box">
+			<img src="https://image.eveonline.com/Character/$uid$_128.jpg" class="rounded">
+			<p>$crest.character.name$</p>
+			<p>$seat.character.accountBalance$ ISK</p>
+			<p>Location: <span id="solar_system_name">$crest.location.solar_system_name$</span> (<span id="structure_name">$crest.location.structure_name$</span>)</p>
+			<p>Active Ship: <span id="ship_type_name">$crest.location.ship.ship_type_name$</span>(<span id="ship_name">$crest.location.ship.ship_name$</span>)</p>
+			<ul>
+				<li class="mail" id="mail_button" onclick="openSection('/mail')">Eve-mail</li>
+				<li class="settings">Settings</li>
+			</ul>
+		</aside>
+		<section>
+			<header class="box">
+				<p class="fleft">Actividad en Wormhole: ...</p>
+				<p class="fright">Próximo evento ...</p>
+			</header>
+			<nav class="box">
+				<ul>
+					<li>Noticias</li>
+					<li>Eventos</li>
+					<li>Baten Puntos</li>
+					<li>Killboard</li>
+					<li>Hangar Oficiales</li>
+					<li>Listado Naves Corporativas</li>
+					<li><a href="/logout"><%logout%></a></li>
+					$TEST$
+				</ul>
+			</nav>
+		</section>
+		<div class="clear"></div>
