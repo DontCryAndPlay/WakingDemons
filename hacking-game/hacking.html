@@ -1,0 +1,138 @@
+<html>
+	<head>
+		<style>
+		html,body {
+			width: 100%;
+			height: 100%;
+			background: #333;
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+		}
+		#game {
+			width: 1000px;
+			height: 800px;
+			background: #000;
+			position: absolute;
+			margin: auto;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			border-radius: 5px;
+		}
+		#game #board {
+			background: url("../static/images/Icons/UI/Hacking/boardBg.png") no-repeat;
+			background-position: center;
+			width: 1000px;
+			height: 650px;
+    		background-position-y: 50px;
+		}
+		#game #hud #status {
+			position: absolute;
+			left: 20px;
+			bottom: 20px;
+			width: 123px;
+			height: 95px;
+			background: url("../static/images/Icons/UI/Hacking/hudBG.png") no-repeat;
+		}
+		#game #hud #status::before {
+			content: ' ';
+			background: url("../static/images/Icons/UI/Hacking/hudIcon.png") no-repeat;
+			background-position: center;
+			position: absolute;
+			width: 123px;
+			height: 95px;
+		}
+		#game #hud #coherenceBar {
+			background-image: url("../static/images/Icons/UI/Hacking/hudBarStripes.png");
+			background-repeat: no-repeat;
+			filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-25deg) saturate(600%) contrast(1); /* this is hacky */
+			overflow: hidden;
+			position: absolute;
+			left: 4px;
+			top: 13px;
+			width: 24px;
+			height: 71px;
+			z-index: 2;
+		}
+		/*#game #hud #coherenceBar::before {
+			content: ' ';
+			background-image: url("../static/images/Icons/UI/Hacking/hudBarStripes.png");
+			background-repeat: no-repeat;
+			filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-25deg) saturate(600%) contrast(1);
+			overflow: hidden;
+			position: absolute;
+			left: 4px;
+			top: 46px;
+			width: 24px;
+			height: 38px;
+			z-index: 2;
+			background-position-y: -33px;
+		}*/
+		#game #hud #strengthBar {
+			background-image: url("../static/images/Icons/UI/Hacking/hudBarStripesMirrored.png");
+			background-repeat: no-repeat;
+			filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-25deg) saturate(600%) contrast(4); /* this is hacky too */
+			overflow: hidden;
+			position: absolute;
+			right: 4px;
+			top: 13px;
+			width: 24px;
+			height: 71px;
+			z-index: 2;
+		}
+		#game #hud #coherenceVal, #game #hud #strengthVal {
+			color: #dcdcdc;
+			position: absolute;
+			width: 100%;
+			margin: auto;
+			text-align: center;
+			top: 1px;
+			font-family: monospace;
+			font-size: 11px;
+			left: 15px;
+
+		}
+		#game #hud #coherenceVal::before {
+			content: ' ';
+			background: url(../static/images/Icons/UI/Hacking/coherence.png) no-repeat;
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			margin-left: -15px;
+			margin-top: 1px;
+		}
+		#game #hud #strengthVal {
+			top: initial;
+			left: initial;
+			right: 15px;
+			bottom: 1px;
+		}
+		#game #hud #strengthVal::before {
+			content: ' ';
+			background: url(../static/images/Icons/UI/Hacking/strength.png) no-repeat;
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			margin-left: 25px;
+			margin-bottom: 1px;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="game">
+			<div id="board"></div>
+			<div id="hud">
+				<div id="status">
+					<div id="coherenceBar"></div>
+					<div id="coherenceVal">100</div>
+					<div id="strengthBar"></div>
+					<div id="strengthVal">100</div>
+				</div>
+				<div id="utils">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
