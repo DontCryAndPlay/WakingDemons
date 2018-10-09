@@ -1,4 +1,5 @@
 <?php
+// RENAME THIS FILE TO configuration.php
 $production = false;
 $debug = true;
 $underConstruction = false;
@@ -17,7 +18,7 @@ $session['sessionPath'] = "/tmp/sessions";
 	...
 Currently supporting MySQLi
 */
-$db['dbhandler'] = "mysqli"; 
+$db['dbhandler'] = "mysqli";
 $db['dbuser'] = "dbuser";
 $db['dbpass'] = "dbpassword";
 $db['dbname'] = "dbname";
