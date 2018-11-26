@@ -42,7 +42,7 @@ class Core {
 			error_reporting(E_ALL);
 			ini_set("log_errors", true);
 		}
-		register_shutdown_function(array(&$this, 'shutdown'));
+		register_shutdown_function(array(Core::$instance, 'shutdown'));
 	}
 	public function shutdown() {
 		debug("Shutting down...");
@@ -57,8 +57,8 @@ class Core {
 		require("configuration.php");
 		define("PRODUCTION", $production);
 		$this->production = $production;
-		$this->config = array_merge($this->config, $db);
-		$this->config = array_merge($this->config, $session);
+		$this->config = array_merge($this->config, $db)??array();
+		$this->config = array_merge($this->config, $session)??array();
 		if(isset($config) && is_array($config))
 			$this->config = array_merge($this->config, $config);
 
@@ -98,7 +98,7 @@ class Core {
 		if(in_array($lib, $this->ignore)) {
 			debug("Ignoring lib ".$lib);
 			$this->createDummyClass($class);
-			continue;
+			return true;
 		}
 		array_push($this->loadedLibraries, $lib);
 		debug("Loading ".$lib);
@@ -153,9 +153,6 @@ function debug($message) {
 		if($buff) {
 			global $buffer;
 			$buffer .= ob_get_clean();			
-		} else {
-			global $buffer;
-			$buffer .= "aaaaaaa";
 		}
 	}
 }

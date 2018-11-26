@@ -40,8 +40,8 @@ class Template {
 	}
 	public function render($return=false) {
 		//render translations
-		$this->processedData = preg_replace_callback('/<%([^%]*)%>/', function($key) {
-			return Language::$instance->getPhrase($key[1]);
+		$this->processedData = preg_replace_callback('/<%([^%~]*)\~?([^%]*)?%>/', function($key) {
+			return Language::$instance->getPhrase($key[1], $key[2]);
 		}, $this->rawData);
 		//render variables
 		global $buffer;

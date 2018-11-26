@@ -56,13 +56,15 @@ class Language {
 	}
 	public function loadDictionary($dictionary=false) {
 		//Undefined dictionary
-		if($dictionary === false) return false;
+		if($dictionary === false)
+			return false;
+		$this->loadDictionaryFromDB($dictionary);
 		//Dictionary doesn't exists.
 		if(isset($_SESSION['path']))
 			$dictionary = $_SESSION['path'] . "/" . $dictionary;
 		$f = @fopen("dictionaries/".$dictionary.".php", "r"); 
 		if(!$f) {
-			error("Can't find dictionary ".$dictionary);
+			error("Can't find dictionary file " . $dictionary);
 			return false;
 		}
 		fclose($f);
@@ -70,13 +72,59 @@ class Language {
 		array_push($this->loadedDictionaries, $dictionary);
 		if (!isset(${$this->currentLanguage})) ${$this->currentLanguage} = array();
 		$this->phrases = array_merge($this->phrases, gettype(${$this->currentLanguage}) == "array" ? ${$this->currentLanguage} : array() );
-		debug("Loaded dictionary ".$dictionary);
+		debug("Loaded dictionary " . $dictionary . " from file");
 	}
-	public function getPhrase($phrase=false) {
+	public function loadDictionaryFromDB($dictionary = false) {
+		if($dictionary === false)
+			return false;
+		if(in_array($dictionary."_SQL", $this->loadedDictionaries)) {
+			error("Already loaded dictionary $dictionary, skipping...");
+			return false;
+		}
+		global $db;
+		if(!$db->connected)
+			return false;
+		$dat = $db->query("SHOW TABLES LIKE 'translations_dictionaries'");
+		if(count($dat) == 0) {
+			error("translations_dictionaries table not found on database.");
+			return false;
+		}
+		$dat = $db->query("SELECT count(*) as n FROM translations_dictionaries WHERE name = '?' LIMIT 1", $dictionary);
+		if(count($dat) == 0 || (isset($dat[0]->n) && $dat[0]->n == 0)) {
+			error("Dictionary $dictionary not found on SQL.");
+			return false;
+		}
+		$dat = $db->query("SHOW TABLES LIKE 'translations'");
+		if(count($dat) == 0) {
+			error("translations table not found on database.");
+			return false;
+		}
+		$dat = $db->query("SELECT key,value FROM translations WHERE dictionary='?' AND language='?'", $dictionary, $this->currentLanguage);
+		if(count($dat) == 0) {
+			error("Empty dictionary: $dictionary");
+			return false;
+		}
+		array_push($this->loadedDictionaries, $dictionary."_SQL");
+		$sqlPhrases = array();
+		if(is_array($dat) && count($dat) > 0) {
+			foreach($dat as $row)
+				$sqlPhrases[$row->key] = $row->value;
+		}
+		
+		$this->phrases = array_merge($this->phrases, $sqlPhrases);
+		$sqlPhrases = null;
+		debug("Loaded dictionary ".$dictionary . " from SQL");
+		return true;
+	}
+	public function getPhrase($phrase=false, $defaultPhrase=false) {
 		if ($phrase === false) return false;
 		if (isset($this->phrases[$phrase]))
 			return $this->phrases[$phrase];
-		else
-			return "<span class='missing-phrase' data-dictionaries='".implode($this->loadedDictionaries, "|")."' data-language='".$this->currentLanguage."' style='color: red'>".$phrase."</span>";
+		else {
+			if(!$defaultPhrase)
+				return "<span class='missing-phrase' data-dictionaries='".implode($this->loadedDictionaries, "|")."' data-language='".$this->currentLanguage."' style='color: red'>".$phrase."</span>";
+			else
+				return $defaultPhrase;
+		}
 	}
 }
