@@ -26,5 +26,5 @@ $db['dbhost'] = "127.0.0.1";
 
 $config['oauth']['clientID'] = "OAUTH_CLIENTID";
 $config['oauth']['secretKey'] = "OAUTH_SECRETKEY";
-$config['oauth']['callback'] = "http://wakingdemons.com/login";
+$config['oauth']['callback'] = "https://wakingdemons.com/login";
 ?>
