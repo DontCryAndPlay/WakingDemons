@@ -5,7 +5,7 @@ $debug = true;
 $underConstruction = false;
 $allowedIPs = array('');
 $ignore = array('');
-$enabledLanguages = "es"; //TODO: switch to array
+$enabledLanguages = array("es");
 
 $session['sessionLifeTime'] = 108000; //1 month
 $session['sessionPath'] = "/tmp/sessions";
