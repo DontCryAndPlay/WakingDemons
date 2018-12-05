@@ -38,9 +38,18 @@ class Language {
 	function __construct() {
 		debug("Loaded");
 		if(!isset(Core::$instance->config['enabledLanguages'])) Core::$instance->config['enabledLanguages'] = "none";
-		debug("Loaded languages: ".Core::$instance->config['enabledLanguages']);
+		$languagesList = "";
+		$languagesArray = array();
+		if(is_array(Core::$instance->config['enabledLanguages'])) {
+			$languagesList = implode(", ", Core::$instance->config['enabledLanguages']);
+			$languagesArray = Core::$instance->config['enabledLanguages'];
+		} else {
+			$languagesList = Core::$instance->config['enabledLanguages'];
+			$languagesArray = explode(",", Core::$instance->config['enabledLanguages']);
+		}
+		debug("Loaded languages: ".$languagesList);
 		self::$instance = $this;
-		$this->languages = explode(",",Core::$instance->config['enabledLanguages']);
+		$this->languages = $languagesArray;
 		$this->detectLanguage();
 	}
 	private function detectLanguage() {
@@ -82,7 +91,7 @@ class Language {
 			return false;
 		}
 		global $db;
-		if(!$db->connected)
+		if(!$db->isConnected())
 			return false;
 		$dat = $db->query("SHOW TABLES LIKE 'translations_dictionaries'");
 		if(count($dat) == 0) {
